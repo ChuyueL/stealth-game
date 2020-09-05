@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public event System.Action OnReachedEndOfLevel;
+
     public float moveSpeed = 7;
     public float smoothMoveTime = 0.1f; //time taken for smoothinputmagnitude to catch up with target input magnitude
     public float turnSpeed = 8;
@@ -14,17 +16,26 @@ public class Player : MonoBehaviour
     Vector3 velocity;
 
     Rigidbody rigidbody;
+    bool disabled;
 
     // Start is called before the first frame update
     void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
+        Guard.OnGuardHasSpottedPlayer += Disable; //subscribing Disable method to OnGuardHasSpottedPlayer event
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 inputDirection = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
+        Vector3 inputDirection = Vector3.zero; 
+
+        if (!disabled) //only set input direction if player isn't 'dead'
+        {
+            inputDirection = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
+            
+        }
+
         float inputMagnitude = inputDirection.magnitude; //1 if any arrow key input, 0 otherwise
         smoothInputMagnitude = Mathf.SmoothDamp(smoothInputMagnitude, inputMagnitude, ref smoothMoveVelocity, smoothMoveTime);
 
@@ -35,23 +46,28 @@ public class Player : MonoBehaviour
 
     }
 
+    void Disable()
+    {
+        disabled = true;
+    }
+
     void FixedUpdate()
     {
         rigidbody.MoveRotation(Quaternion.Euler(Vector3.up * angle));
         rigidbody.MovePosition(rigidbody.position + velocity * Time.deltaTime);
     }
 
-    IEnumerator TurnToFace(Vector3 inputDirection)
+    private void OnTriggerEnter(Collider hitCollider)
     {
-        float targetAngle = 90 - Mathf.Atan2(inputDirection.z, inputDirection.x) * Mathf.Rad2Deg;
-
-        //> 0 would be dangerous as eulerangles may never exactly reach targetangle 
-        //DeltaAngle will be -ve if turn is anticlockwise, hence the abs
-        while (Mathf.Abs(Mathf.DeltaAngle(transform.eulerAngles.y, targetAngle)) > 0.05f)
+        if (hitCollider.tag == "Finish")
         {
-            float angle = Mathf.MoveTowardsAngle(transform.eulerAngles.y, targetAngle, turnSpeed * Time.deltaTime);
-            transform.eulerAngles = Vector3.up * angle;
-            yield return null; //wait for a frame
+            Disable();
+            OnReachedEndOfLevel?.Invoke();
         }
+    }
+
+    private void OnDestroy()
+    {
+        Guard.OnGuardHasSpottedPlayer -= Disable;
     }
 }
