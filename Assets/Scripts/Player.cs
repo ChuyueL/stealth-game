@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class Player : MonoBehaviour
     public float smoothMoveTime = 0.1f; //time taken for smoothinputmagnitude to catch up with target input magnitude
     public float turnSpeed = 8;
 
+
+
     float angle;
     float smoothInputMagnitude;
     float smoothMoveVelocity;
@@ -17,6 +20,7 @@ public class Player : MonoBehaviour
 
     Rigidbody rigidbody;
     bool disabled;
+
 
     // Start is called before the first frame update
     void Start()
@@ -69,5 +73,10 @@ public class Player : MonoBehaviour
     private void OnDestroy()
     {
         Guard.OnGuardHasSpottedPlayer -= Disable;
+    }
+
+    void OnKillButton()
+    {
+
     }
 }

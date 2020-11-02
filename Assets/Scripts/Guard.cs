@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Guard : MonoBehaviour
 {
     public static event System.Action OnGuardHasSpottedPlayer;
+
+    public Button killButton;
 
     public float speed = 5;
     public float waitTime = 0.3f;
@@ -20,6 +23,8 @@ public class Guard : MonoBehaviour
 
     public Transform pathHolder;
     Transform player;
+
+    float interactableRadius = 1f;
 
     //gizmos are only visible in editor, not in final build of game
     void OnDrawGizmos()
@@ -73,6 +78,8 @@ public class Guard : MonoBehaviour
         {
             OnGuardHasSpottedPlayer?.Invoke();
         }
+
+        
     }
 
     bool CanSeePlayer()
@@ -93,6 +100,15 @@ public class Guard : MonoBehaviour
             }
         }
         return false;
+    }
+
+    public void OnKillButton()
+    {
+        if (Vector3.Distance(transform.position, player.position) < interactableRadius)
+        {
+            Debug.Log("killed " + transform.name);
+            Destroy(gameObject);
+        }
     }
     
     IEnumerator TurnToFace(Vector3 lookTarget)
