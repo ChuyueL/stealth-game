@@ -24,7 +24,7 @@ public class Guard : MonoBehaviour
     public Transform pathHolder;
     Transform player;
 
-    float interactableRadius = 1f;
+    float interactableRadius = 2f;
 
     //gizmos are only visible in editor, not in final build of game
     void OnDrawGizmos()
