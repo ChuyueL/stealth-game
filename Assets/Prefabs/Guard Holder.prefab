@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3326737281413266347}
   m_Layer: 0
   m_Name: Guard Holder
-  m_TagString: Untagged
+  m_TagString: Guard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 6121983048247622693}
   m_Layer: 0
   m_Name: Guard
-  m_TagString: Untagged
+  m_TagString: Guard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -140,7 +140,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31f32447848b7b245b2697e3449e6123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  killButton: {fileID: 0}
   speed: 5
   waitTime: 0.3
   turnSpeed: 90

@@ -7,7 +7,7 @@ public class Guard : MonoBehaviour
 {
     public static event System.Action OnGuardHasSpottedPlayer;
 
-    public Button killButton;
+    //public Button killButton;
 
     public float speed = 5;
     public float waitTime = 0.3f;
@@ -24,7 +24,7 @@ public class Guard : MonoBehaviour
     public Transform pathHolder;
     Transform player;
 
-    float interactableRadius = 2f;
+    //float interactableRadius = 2f;
 
     //gizmos are only visible in editor, not in final build of game
     void OnDrawGizmos()
@@ -102,6 +102,7 @@ public class Guard : MonoBehaviour
         return false;
     }
 
+    /*
     public void OnKillButton()
     {
         if (Vector3.Distance(transform.position, player.position) < interactableRadius)
@@ -110,6 +111,7 @@ public class Guard : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    */
     
     IEnumerator TurnToFace(Vector3 lookTarget)
     {

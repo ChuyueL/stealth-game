@@ -648,9 +648,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 589703238592906649, guid: a1672d646e5aaaa49ba40ff77735f9c8,
-          type: 3}
-        m_MethodName: 
+      - m_Target: {fileID: 1437116075}
+        m_MethodName: OnKillButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3278,17 +3277,17 @@ PrefabInstance:
     - target: {fileID: 3326737281413266347, guid: a1672d646e5aaaa49ba40ff77735f9c8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12.2
+      value: 11.3
       objectReference: {fileID: 0}
     - target: {fileID: 3326737281413266347, guid: a1672d646e5aaaa49ba40ff77735f9c8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.689047e-16
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3326737281413266347, guid: a1672d646e5aaaa49ba40ff77735f9c8,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.1
+      value: -8.7
       objectReference: {fileID: 0}
     - target: {fileID: 3326737281413266347, guid: a1672d646e5aaaa49ba40ff77735f9c8,
         type: 3}
@@ -3421,6 +3420,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad1fec4c21001a548894815442d9e4e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  killButton: {fileID: 288240754}
   moveSpeed: 7
   smoothMoveTime: 0.1
   turnSpeed: 8

@@ -7,6 +7,10 @@ public class Player : MonoBehaviour
 {
     public event System.Action OnReachedEndOfLevel;
 
+    public Button killButton;
+    float killRadius = 2f;
+    float killAngle = 90f;
+
     public float moveSpeed = 7;
     public float smoothMoveTime = 0.1f; //time taken for smoothinputmagnitude to catch up with target input magnitude
     public float turnSpeed = 8;
@@ -75,8 +79,19 @@ public class Player : MonoBehaviour
         Guard.OnGuardHasSpottedPlayer -= Disable;
     }
 
-    void OnKillButton()
+    public void OnKillButton()
     {
-
+        Debug.Log("pressed button");
+        Ray ray = new Ray(transform.position, transform.forward);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, killRadius))
+        {
+            Debug.Log("can see " + hit.collider.gameObject.name);
+            if (hit.collider.gameObject.tag == "Guard")
+            {
+                Debug.Log("Killed " + hit.collider.gameObject.name);
+                Destroy(hit.collider.gameObject);
+            }
+        }
     }
 }
