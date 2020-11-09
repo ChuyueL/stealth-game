@@ -3,12 +3,12 @@ Stealth game made with Unity
 
 Base game made using Sebastian Lague's tutorial on Youtube (https://www.youtube.com/playlist?list=PLFt_AvWsXl0fnA91TcmkRyhhixX9CO3Lw)
 
-** Functionality I've added: **
+**Functionality I've added:**
 
 Method of eliminating guards
 
 
-** Functionality I hope to add: **
+**Functionality I hope to add:**
   
 Music 
 
